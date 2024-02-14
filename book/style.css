@@ -1,0 +1,251 @@
+#book {
+  width: 50%;
+  height: 50vh;
+  position: relative;
+  left: calc(50vw - 25%); /* Center horizontally */
+  top: 25vh;
+  perspective: 75vw;
+}
+button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+#book:before {
+  width: 1%;
+  height: 100%;
+  background: #222;
+  content: '';
+  position: absolute;
+  left: 49%;
+  top: 0;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, .75);
+}
+
+.page {
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at 0% 100%, #777, #ddd 70%);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, .15);
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transition: z-index .01s linear 1s, transform 2s linear;
+  transform-origin: 0% 50%;
+  z-index: 5;
+  cursor: pointer;
+  font-family: monospace;
+  text-align: center;
+  line-height: 50vh;
+}
+
+/* Media queries for iPhone 14 Pro Max */
+@media only screen and (max-width: 428px) and (-webkit-device-pixel-ratio: 3) {
+  #book {
+    width: 100%;
+    left: 0; /* Ensure it starts at the left edge */
+  }
+
+  .page {
+    width: 90%;
+    left: 5%;
+  }
+}
+  
+  .front, .back {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+      
+    font-family:monospace;
+    text-align:center;
+    line-height:50vh;
+    
+    opacity:0;
+    transition:opacity .1s linear 1s;
+  }
+  .front {
+    opacity:1;
+  }
+  .back {
+    transform:scaleX(-1);
+  }
+  
+  input {
+    visibility:hidden;
+  }
+  
+  label {
+    width:100%;
+    height:100%;
+    z-index:99;
+    position:absolute;
+    left:0;
+    top:0;
+    margin:0;
+    padding:0;
+  /*   pointer-events:none; */
+  /*   visibility:hidden; */
+  /*   background:red; */
+  }
+  
+  input:checked + .page {
+    transform:rotateY(-180deg); 
+  }
+  
+  input:checked + .page .front {
+    opacity:0;  
+  }
+  input:checked + .page .back {
+    opacity:1;  
+  }
+  
+  #five:checked + .page {
+    z-index:5;
+  }
+  #four:checked + .page {
+    z-index:4;
+  }
+  #three:checked + .page {
+    z-index:3;
+  }
+  #two:checked + .page {
+    z-index:2;
+  }
+  #one:checked + .page {
+    z-index:1;
+  }
+  
+  body {
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    background-color: #EDD8C6;
+  }
+  
+  /* interior pages styles */
+  #page1 .front {
+    font-size:2vh;
+    letter-spacing:0vh;
+    line-height:50vh;
+    font-weight:900;
+    text-align:right;
+    background:radial-gradient(circle at 70% 50%, black 50%, #222 40%);
+    color:magenta;
+    animation:cover 10s linear infinite;
+  }
+  @keyframes cover {
+    20% { color:lime }
+    40% { color:dodgerblue }
+    60% { color:gold }
+    80% { color:cyan }
+  }
+  
+  #page1 .back {
+    font-size:1.5vh;
+    text-shadow:-0.8px 0px magenta, 0.8px 0px cyan;
+    color:magenta;
+    animation:cover 10s linear infinite;
+    background: black;
+  }
+  #page2 .front {
+    font-size:1vh;
+    font-family:serif;
+    font-weight:900;
+    background: pink;
+    animation:L 10s linear infinite;
+  }
+  
+  #page2 .back {
+    font-size:1.5vh;
+    text-shadow:-0.8px 0px magenta, 0.8px 0px cyan;
+    color:magenta;
+    animation:cover 10s linear infinite;
+    background: black;
+  }
+
+  #page3 .front {
+    background:pink;
+    color:lime;
+    font-size:2vh;
+    font-weight:900;
+    font-family:serif;
+    overflow:hidden;
+  }
+  #page3 .front:before {
+    content:'';
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    background-size:.5vh .5vh;
+    background-position:-.5vh;
+  }
+  #page3 .front:after {
+    width:100%;
+    height:100%;
+    position:absolute;
+    top:-1px;
+    left:-10px;
+    color:#222;
+  }
+  
+  #page3 .back {
+    font-size:1.5vh;
+    text-shadow:-0.8px 0px magenta, 0.8px 0px cyan;
+    color:magenta;
+    animation:cover 10s linear infinite;
+    background: black;
+  }
+  
+  #page4 {
+    overflow:hidden;
+    background: pink;
+    
+  }
+  #page4 .front {
+    font-size:1vh;
+    font-family:serif;
+    font-weight:900;
+    background: pink;
+    animation:L 10s linear infinite;
+    }
+  
+  #page4 .back {
+    font-size:1.5vh;
+    text-shadow:-0.8px 0px magenta, 0.8px 0px cyan;
+    color:magenta;
+    animation:cover 10s linear infinite;
+    background: black;
+  }
+  #page5 .front {
+    color:gold;
+    font-size:25vh;
+    font-weight:900;
+    font-family:serif;
+    background:#222;
+    text-shadow:24px 24px purple;
+    animation:slide 10s linear infinite;
+    }
+  
+  @keyframes slide {
+    25% { text-shadow:-24px 24px purple; }
+    50% { text-shadow:-24px -24px purple; }
+    75% { text-shadow:24px -24px purple; }
+    100% { text-shadow:24px 24px purple; }
+  }
+  
+  #page5 .back {
+    font-size:2vh;
+    letter-spacing:0vh;
+    line-height:50vh;
+    font-weight:900;
+    text-align:left;
+    background:radial-gradient(circle at 30% 50%, black 50%, #222 40%);
+    color:magenta;
+    padding-left:2vh;
+    animation:cover 10s linear infinite;
+  }
